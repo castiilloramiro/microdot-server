@@ -3,22 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Actividad #</title>
+    <title>Actividad</title>
     <link rel="stylesheet" href="styles/base.css">
 </head>
+
 <body>
     <header>
-        <h1>Actividad #</h1>
+        <h1>Actividad {{#}}</h1>
     </header>
+
     <main>
+        <h1 style="text-align: center;">{{Mensaje}}</h1>
+
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 16px; margin-top: 16px;">
+
+            <!-- Botones LED -->
+            <div style="display: flex; gap: 16px;">
+                <button id="led1" class="led-button off" onclick="toggleLed(1)">LED 1</button>
+                <button id="led2" class="led-button off" onclick="toggleLed(2)">LED 2</button>
+                <button id="led3" class="led-button off" onclick="toggleLed(3)">LED 3</button>
+            </div>
+
+            <!-- Control RGB -->
+            <div class="rgb-control">
+                <div>
+                    <span style="color: red;">R: </span>
+                    <input type="number" id="redValue" class="rgb-value" min="0" max="255" value="255">
+                </div>
+
+                <div>
+                    <span style="color: green;">G: </span>
+                    <input type="number" id="greenValue" class="rgb-value" min="0" max="255" value="255">
+                </div>
+
+                <div>
+                    <span style="color: blue;">B: </span>
+                    <input type="number" id="blueValue" class="rgb-value" min="0" max="255" value="255">
+                </div>
+
+                <button 
+                    onclick="sendRgbValues()" 
+                    class="led-button" 
+                    style="margin-top: 15px;">
+                    Aplicar a NeoPixels
+                </button>
+            </div>
+
+            <!-- Control de Temperatura -->
+            <div class="container">
+                <h1>Control de Temperatura</h1>
+
+                <div id="temperature-display">
+                    Temperatura: <span id="temperature-value">--</span> °C
+                </div>
+
+                <label for="setpoint-slider">Setpoint:</label>
+                <input 
+                    type="range" 
+                    id="setpoint-slider" 
+                    min="0" 
+                    max="100" 
+                    value="25" 
+                    oninput="updateSetpointValue(this.value)">
+                
+                <span id="setpoint-value">--</span> °C
+
+                <div id="buzzer-status">
+                    Buzzer: <span id="buzzer-state">--</span>
+                </div>
+            </div>
+
+        </div>
     </main>
+
     <footer>
         <p>Representación Frontal y Visual de Datos</p>
         <p>Computadoras de Aeronaves</p>
-        <p>Alumno XX</p>
+        <p>Alumno: {{Alumno}}</p>
         <p>Prof. Carlassara Fabrizio</p>
         <p id="fecha"></p>
     </footer>
+
     <script src="scripts/base.js"></script>
 </body>
 </html>
